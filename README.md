@@ -1,7 +1,7 @@
 # Inception
  System Administration Exercise :whale:
 
-![image](https://user-images.githubusercontent.com/63563271/165193453-4665c769-8990-4542-9b13-583ff9de6591.png)
+![image](https://user-images.githubusercontent.com/63563271/165197599-71613196-1daa-47d5-97bd-5155d581ec72.png)
 
 
     │   

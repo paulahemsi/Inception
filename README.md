@@ -35,7 +35,24 @@
     |   └── docker-compose.yml         
     └── Makefile 
  
- ## dockerfile
+## containers
+ 
+ So, first things first: what a hell is a container?
+ 
+**A container is a standard unit of software that packages up code and all its dependencies so the application runs quickly and reliably from one computing environment to another.**
+
+A Docker container image is a lightweight, standalone, executable package of software that includes everything needed to run an application: code, runtime, system tools, system libraries and settings.
+
+Container images become containers at runtime and in the case of Docker containers – images become containers when they run on Docker Engine. Available for both Linux and Windows-based applications, containerized software will always run the same, regardless of the infrastructure. Containers isolate software from its environment and ensure that it works uniformly despite differences for instance between development and staging.
+
+
+## containers vs virtual machines
+
+![image](https://user-images.githubusercontent.com/63563271/165406602-7fdf7260-5f29-448f-82a1-82bb8030817c.png)
+from [docker](https://www.docker.com/resources/what-container/)
+
+
+## dockerfile
  
 Docker builds images automatically by reading the instructions from a Dockerfile -- a text file that contains all commands, in order, needed to build a given image.
 

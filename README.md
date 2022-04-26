@@ -3,7 +3,12 @@
 
 * [diagram](#diagram)
 * [folder_structure](#folder_structure)
+* [containers](#containers)
+* [containers_vs_virtual_machines](#containers_vs_virtual_machines)
 * [dockerfile](#dockerfile)
+* [docker_image](#docker_image)
+* [docker_compose](#docker_compose)
+* [study_resources](#study_resources)
 
 ## diagram
 
@@ -46,10 +51,11 @@ A Docker container image is a lightweight, standalone, executable package of sof
 Container images become containers at runtime and in the case of Docker containers – images become containers when they run on Docker Engine. Available for both Linux and Windows-based applications, containerized software will always run the same, regardless of the infrastructure. Containers isolate software from its environment and ensure that it works uniformly despite differences for instance between development and staging.
 
 
-## containers vs virtual machines
+## containers_vs_virtual_machines
 
 ![image](https://user-images.githubusercontent.com/63563271/165406602-7fdf7260-5f29-448f-82a1-82bb8030817c.png)
 from [docker](https://www.docker.com/resources/what-container/)
+
 
 
 ## dockerfile
@@ -85,3 +91,16 @@ The instruction is not case-sensitive. However, convention is for them to be UPP
 |`STOPSIGNAL` | *signal* | sets the system call signal that will be sent to the container to exit |
 |`SHELL` | *["executable", "parameters"]* |  allows the default shell used for the shell form of commands to be overridden |
 |`HEALTCHECK`| *[OPTIONS] CMD command* | tells docker how to test a container to check that it is still working |
+
+## docker_image
+
+A docker image ia a template of instructions that are used to create containers.
+A docker image is built using the dockerfile.
+
+## docker_compose
+
+A docker compose is used for running multiple containers as a single service. In compose service, each container runs in isolarion but can interact with each other with no limitations 
+
+## study_resources
+
+* [Docker And Containers Explained](https://www.youtube.com/watch?v=A0g7I4A6GN4)

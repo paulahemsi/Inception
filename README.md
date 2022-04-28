@@ -101,6 +101,57 @@ A docker image is built using the dockerfile.
 
 A docker compose is used for running multiple containers as a single service. In compose service, each container runs in isolarion but can interact with each other with no limitations 
 
+## docker CLI commands
+
+|command| action |
+|-----------|----------|
+|`docker run <IMAGE>`|Start a new Container from an Image|
+|`docker run --name <NAME> <IMAGE>`|Start a new Container from an Image with custom name |
+|`docker run -p <HOST_PORT>:<CONTAINER_PORT> <IMAGE>`| Start a new Container from an Image and map a port|
+|`docker run -d <IMAGE>`|Start a new Container in background|
+|`docker run --hostname <HOSTNAME> <IMAGE>`| Start a new Container and assign it a hostname|
+|`docker run --add-host <HOSTNAME>:<IP> <IMAGE>`| Start a new Container and add a dns entry |
+|`docker run -it --entryopoint <EXECUTABLE> <IMAGE>`| Start a new Container but change the entrypoint|
+|----------|---------|
+|`docker ps`| Show a list of running containers |
+|`docker ps -a`| Show a list of all containers |
+| `docker rm <CONTAINER>`| Delete a container |
+|`docker rm -f <CONTAINER>`| Force to delete a running container |
+|`docker container prune`| Removes all stopped containers |
+|`docker stop <CONTAINER>`| Stop a running container |
+|`docker start <CONTAINER>`| Start a stopped container |
+|`docker exec -it <CONTAINER> <EXECUTABLE>`| Start a shell inside a running container |
+|`docker rename <OLD_NAME> <NEW_NAME>`| Rename a container |
+|---------|---------|
+|`docker pull <IMAGE>[:TAG]`| Download an image |
+|`docker rmi <IMAGE>`| Delete an image |
+|`docker images`| Show a list of all image |
+|`docker images prune -a`| Delete all unused images |
+|`docker build <DIRECTORY>`| Build an image from a Dockerfile |
+|`docker tag <IMAGE> <NEW_IMAGE>`| Tag an image |
+|`docker build -t <IMAGE> <DIRECTORY>`| Build and tag an image from a Dockerfile |
+|`docker save <IMAGE> > <FILE>`| Save an image to .tar file |
+|`docker load -i <FILE>`| Load an image from a .tar file |
+|---------|---------|
+|`docker logs <CONTAINER>`| Show the logs of a container |
+|`docker stats`| Show stats of running containers |
+|`docker top <CONTAINER>`| Show processes of container |
+|`docker version`| Show installed docker version |
+|`docker inspect <CONTAINER>`| Get detailed info (json format) about an object |
+|`docker diff <CONTAINER>`| Show all modified files in container |
+|`docker port <CONTAINER>`| Show mapped ports of a container |
+
+[more in The Ultimate Docker Cheat Sheet](https://dockerlabs.collabnix.com/docker/cheatsheet/)
+
+
+
+
+
+
+
+
+
+
 ## study_resources
 
 * [Docker And Containers Explained](https://www.youtube.com/watch?v=A0g7I4A6GN4)

@@ -101,6 +101,94 @@ A docker image is built using the dockerfile.
 
 A docker compose is used for running multiple containers as a single service. In compose service, each container runs in isolarion but can interact with each other with no limitations 
 
+```yml
+# docker-compose.yml
+version: '1'
+
+services:
+  web:
+    build: .
+    # build from Dockerfile
+    context: ./Path
+    dockerfile: Dockerfile
+    ports:
+     - "5000:5000"
+    volumes:
+     - .:/code
+  redis:
+    image: redis
+
+# ports
+ports:
+  - "3000"
+  - "8000:80"  # guest:host
+# expose ports to linked services (not to host)
+expose: ["3000"]
+
+# command to execute
+command: bundle exec thin -p 3000
+command: [bundle, exec, thin, -p, 3000]
+
+# override the entrypoint
+entrypoint: /app/start.sh
+entrypoint: [php, -d, vendor/bin/phpunit]
+
+# environment vars
+environment:
+  RACK_ENV: development
+environment:
+  - RACK_ENV=development
+
+# environment vars from file
+env_file: .env
+env_file: [.env, .development.env]
+
+# dependencies
+# makes the `db` service available as the hostname `database`
+# (implies depends_on)
+links:
+  - db:database
+  - redis
+
+# make sure `db` is alive before starting
+depends_on:
+  - db
+
+# make this service extend another
+extends:
+  file: common.yml  # optional
+  service: webapp
+volumes:
+  - /var/lib/mysql
+  - ./_data:/var/lib/mysql
+  
+# DNS servers
+services:
+  web:
+    dns: 8.8.8.8
+    dns:
+      - 8.8.8.8
+      - 8.8.4.4
+
+#hosts
+services:
+  web:
+    extra_hosts:
+      - "somehost:192.168.1.100"
+
+# network
+# creates a custom network called `frontend`
+networks:
+  frontend:
+# join a preexisting network
+networks:
+  default:
+    external:
+      name: frontend
+```
+
+from [devhints](https://devhints.io/docker-compose) in [jonlabelle](https://gist.github.com/jonlabelle/bd667a97666ecda7bbc4f1cc9446d43a)
+
 ## docker CLI commands
 
 |command| action |
@@ -112,7 +200,7 @@ A docker compose is used for running multiple containers as a single service. In
 |`docker run --hostname <HOSTNAME> <IMAGE>`| Start a new Container and assign it a hostname|
 |`docker run --add-host <HOSTNAME>:<IP> <IMAGE>`| Start a new Container and add a dns entry |
 |`docker run -it --entryopoint <EXECUTABLE> <IMAGE>`| Start a new Container but change the entrypoint|
-|----------|---------|
+| | |
 |`docker ps`| Show a list of running containers |
 |`docker ps -a`| Show a list of all containers |
 | `docker rm <CONTAINER>`| Delete a container |
@@ -122,7 +210,7 @@ A docker compose is used for running multiple containers as a single service. In
 |`docker start <CONTAINER>`| Start a stopped container |
 |`docker exec -it <CONTAINER> <EXECUTABLE>`| Start a shell inside a running container |
 |`docker rename <OLD_NAME> <NEW_NAME>`| Rename a container |
-|---------|---------|
+| | |
 |`docker pull <IMAGE>[:TAG]`| Download an image |
 |`docker rmi <IMAGE>`| Delete an image |
 |`docker images`| Show a list of all image |
@@ -132,7 +220,7 @@ A docker compose is used for running multiple containers as a single service. In
 |`docker build -t <IMAGE> <DIRECTORY>`| Build and tag an image from a Dockerfile |
 |`docker save <IMAGE> > <FILE>`| Save an image to .tar file |
 |`docker load -i <FILE>`| Load an image from a .tar file |
-|---------|---------|
+| | |
 |`docker logs <CONTAINER>`| Show the logs of a container |
 |`docker stats`| Show stats of running containers |
 |`docker top <CONTAINER>`| Show processes of container |
@@ -140,8 +228,18 @@ A docker compose is used for running multiple containers as a single service. In
 |`docker inspect <CONTAINER>`| Get detailed info (json format) about an object |
 |`docker diff <CONTAINER>`| Show all modified files in container |
 |`docker port <CONTAINER>`| Show mapped ports of a container |
+|`docker-compose start` | Starts existing containers for a service|
+|`docker-compose stop` | Stops running containers |
+|`docker-compose pause` | Pauses running containers of a service |
+|`docker-compose unpause` | Unpauses paused containers of a service |
+|`docker-compose ps` | Lists containers |
+|`docker-compose up` | Builds, (re)creates, starts, and attaches to containers for a service |
+|`docker-compose down` | Stops containers and removes containers, networks, volumes, and images created by up |
 
-[more in The Ultimate Docker Cheat Sheet](https://dockerlabs.collabnix.com/docker/cheatsheet/)
+
+
+
+more in [The Ultimate Docker Cheat Sheet](https://dockerlabs.collabnix.com/docker/cheatsheet/) and[docker-compose-cheatsheet](https://jonlabelle.com/snippets/view/markdown/docker-compose-cheatsheet)
 
 
 

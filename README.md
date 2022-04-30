@@ -239,7 +239,7 @@ from [devhints](https://devhints.io/docker-compose) in [jonlabelle](https://gist
 
 
 
-more in [The Ultimate Docker Cheat Sheet](https://dockerlabs.collabnix.com/docker/cheatsheet/) and[docker-compose-cheatsheet](https://jonlabelle.com/snippets/view/markdown/docker-compose-cheatsheet)
+more in [The Ultimate Docker Cheat Sheet](https://dockerlabs.collabnix.com/docker/cheatsheet/) and [docker-compose-cheatsheet](https://jonlabelle.com/snippets/view/markdown/docker-compose-cheatsheet)
 
 
 

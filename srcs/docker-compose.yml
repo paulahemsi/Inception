@@ -1,0 +1,14 @@
+version: '1'
+
+services:
+
+  nginx:
+    build: ./nginx #where to find the Dockerfile
+    image: nginx
+    dockerfile: Dockerfile
+    ports:
+     - "443:443"
+    volumes:
+     - .:/code
+  redis:
+    image: redis

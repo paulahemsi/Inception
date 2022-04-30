@@ -260,3 +260,4 @@ more in [The Ultimate Docker Cheat Sheet](https://dockerlabs.collabnix.com/docke
 ## study_resources
 
 * [Docker And Containers Explained](https://www.youtube.com/watch?v=A0g7I4A6GN4)
+* [the importance of pid 1 in containers](https://tandrepires.wordpress.com/2016/11/15/the-importance-of-pid-1-in-containers/)

@@ -8,6 +8,7 @@
 * [dockerfile](#dockerfile)
 * [docker_image](#docker_image)
 * [docker_compose](#docker_compose)
+* [docker_CLI_commands](#docker_CLI_commands)
 * [study_resources](#study_resources)
 
 ## diagram
@@ -91,6 +92,12 @@ The instruction is not case-sensitive. However, convention is for them to be UPP
 |`STOPSIGNAL` | *signal* | sets the system call signal that will be sent to the container to exit |
 |`SHELL` | *["executable", "parameters"]* |  allows the default shell used for the shell form of commands to be overridden |
 |`HEALTCHECK`| *[OPTIONS] CMD command* | tells docker how to test a container to check that it is still working |
+
+### ENTRYPOINT
+
+The best use for `ENTRYPONT` is to set the image's main command, allowing that image to be run as thought it was that command (and then use CMD as the default flags).
+
+
 
 ## docker_image
 
@@ -189,7 +196,7 @@ networks:
 
 from [devhints](https://devhints.io/docker-compose) in [jonlabelle](https://gist.github.com/jonlabelle/bd667a97666ecda7bbc4f1cc9446d43a)
 
-## docker CLI commands
+## docker_CLI_commands
 
 |command| action |
 |-----------|----------|

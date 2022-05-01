@@ -10,6 +10,7 @@
 * [docker_compose](#docker_compose)
 * [docker_CLI_commands](#docker_CLI_commands)
 * [study_resources](#study_resources)
+* [nginx](#nginx)
 
 ## diagram
 
@@ -254,17 +255,103 @@ from [devhints](https://devhints.io/docker-compose) in [jonlabelle](https://gist
 
 
 
-
 more in [The Ultimate Docker Cheat Sheet](https://dockerlabs.collabnix.com/docker/cheatsheet/) and [docker-compose-cheatsheet](https://jonlabelle.com/snippets/view/markdown/docker-compose-cheatsheet)
 
 
+## nginx
 
 
+NGINX is a web server designed for use cases involving high volumes of traffic. It’s a popular, lightweight, high-performance solution.
+
+One of its many impressive features is that it can serve static content (media files, HTML) efficiently. NGINX utilizes an asynchronous event-driven model, delivering reliable performance under significant loads.
+
+### configuration
 
 
+from [nginx configuration guide](https://www.plesk.com/blog/various/nginx-configuration-guide/#:~:text=Every%20NGINX%20configuration%20file%20will,interchangeably%20as%20blocks%20or%20contexts%20.)
 
+Every NGINX configuration file will be found in the /etc/nginx/ directory, with the main configuration file located in /etc/nginx/nginx.conf .
 
+NGINX configuration options are known as “directives”: these are arranged into groups, known interchangeably as blocks or contexts .
+Lines that contain directives should end with a semicolon (;). If not, NGINX will be unable to load the configuration properly and report an error.
 
+* Http block
+
+```
+http {
+
+...
+
+}
+```
+The http block includes directives for web traffic handling, which are generally known as universal . That’s because they get passed on to each website configuration served by NGINX.
+
+* Server blocks
+
+```
+server {
+
+...
+
+}
+```
+
+When installing NGINX from the Ubuntu or Debian repositories, the line will read: include /etc/nginx/sites-enabled/;. The ../sites-enabled/ folder will include symlinks to the site configuration files located within /etc/nginx/sites-available/. You can disable sites within sites-available if you take out the symlink to sites-enabled. An illustrative configuration file can be found at /etc/nginx/conf.d/default.conf or etc/nginx/sites-enabled/default.
+
+* Listening Ports
+
+The listen directive informs NGINX of the hostname/IP and TCP port, so it recognizes where it must listen for HTTP connections.
+
+* Name-based Virtual Hosting
+
+The server_name directive enables a number of domains to be served from just one IP address, and the server will determine which domain it will serve according to the request header received.
+
+Generally, you should create one file for each site or domain you wish to host on your server.
+
+The server_name directive can utilize wildcards. `*`.example.com and .example.com tell the server to process requests for all example.com subdomains
+
+File `/etc/nginx/conf.d/example.com.conf`:
+
+```
+server_name *.example.com;
+
+server_name .example.com;
+
+server_name example.*;
+```
+
+* Location Blocks
+
+NGINX’s location setting helps you set up the way in which NGINX responds to requests for resources inside the server. As the server_name directive informs NGINX how it should process requests for the domain, location directives apply to requests for certain folders and files (e.g. http://example.com/blog/) 
+
+File `/etc/nginx/sites-available/example.com`
+
+```
+location / { }
+
+location /images/ { }
+
+location /blog/ { }
+
+location /planet/ { }
+
+location /planet/blog/ { }
+```
+* How to Use Location Root and Index
+
+```
+location / {
+
+root html;
+
+index index.html index.htm;
+
+}
+```
+
+In the example, the document root is based in the html/ directory. Under the NGINX default installation prefix, the location’s full path is /etc/nginx/html/
+ 
+The `index` variable informs NGINX which file it should serve when or if none are specified.
 
 ## study_resources
 

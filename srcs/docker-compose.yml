@@ -1,14 +1,15 @@
-version: '1'
+version: '2.2'
 
 services:
 
   nginx:
-    build: ./nginx #where to find the Dockerfile
+
+    build: ./requirements/nginx #where to find the Dockerfile
     image: nginx
-    dockerfile: Dockerfile
+    container_name: nginx
+    restart: unless-stopped
     ports:
-     - "443:443"
-    volumes:
-     - .:/code
-  redis:
-    image: redis
+      - "443:443"
+      - "80:80"
+
+

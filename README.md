@@ -9,8 +9,9 @@
 * [docker_image](#docker_image)
 * [docker_compose](#docker_compose)
 * [docker_CLI_commands](#docker_CLI_commands)
-* [study_resources](#study_resources)
+* [Defining Environment Variables](#Defining_Environment_Variables)
 * [nginx](#nginx)
+* [study_resources](#study_resources)
 
 ## diagram
 
@@ -117,6 +118,10 @@ A docker image is built using the dockerfile.
 ## docker_compose
 
 A docker compose is used for running multiple containers as a single service. In compose service, each container runs in isolarion but can interact with each other with no limitations 
+
+The `docker-compose.yml` file will contain the service definitions for the setup. A **service** in Compose is a **running container**, and service definitions specify information about how each container will run.
+
+Using Compose, you can define different services in order to run multi-container applications, since Compose allows you to link these services together with shared networks and volumes.
 
 ```yml
 # docker-compose.yml
@@ -353,9 +358,18 @@ In the example, the document root is based in the html/ directory. Under the NGI
  
 The `index` variable informs NGINX which file it should serve when or if none are specified.
 
+## Defining_Environment_Variables
+
+from [Digital Ocean](https://www.digitalocean.com/community/tutorials/how-to-install-wordpress-with-docker-compose)
+
+Your database and WordPress application containers will need access to certain environment variables at runtime in order for your application data to persist and be accessible to your application. These variables include both sensitive and non-sensitive information: sensitive values for your DB root password and application database user and password, and non-sensitive information for your application database name and host.
+
+Rather than setting all of these values in our Docker Compose file — the main file that contains information about how our containers will run — we can set the sensitive values in an .env file and restrict its circulation. This will prevent these values from copying over to our project repositories and being exposed publicly.
+
 ## study_resources
 
 * [Docker And Containers Explained](https://www.youtube.com/watch?v=A0g7I4A6GN4)
 * [the importance of pid 1 in containers](https://tandrepires.wordpress.com/2016/11/15/the-importance-of-pid-1-in-containers/)
 * [difference between nginx daemon on off option](https://stackoverflow.com/questions/25970711/what-is-the-difference-between-nginx-daemon-on-off-option#:~:text=For%20Docker%20containers%20(or%20for%20debugging)%2C%20the%20daemon%20off%3B%20directive%20tells%20Nginx%20to%20stay%20in%20the%20foreground.%20For%20containers%20this%20is%20useful%20as%20best%20practice%20is%20for%20one%20container%20%3D%20one%20process.%20One%20server%20(container)%20has%20only%20one%20service.)
 * [difference between cmd and entrypoint in a dockerfile](https://stackoverflow.com/questions/21553353/what-is-the-difference-between-cmd-and-entrypoint-in-a-dockerfile)
+* [digital ocean- how to install wordpress with docker compose](https://www.digitalocean.com/community/tutorials/how-to-install-wordpress-with-docker-compose)

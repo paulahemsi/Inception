@@ -21,24 +21,23 @@ services:
   #   networks:
   #     - 42-network
 
-  # wordpress:
-  #   depends_on: # ensures that our containers will start in order of dependency
-  #     - mariadb
-  #   build: ./requirements/wordpress # where to find the Dockerfile
-  #   image: wordpress
-  #   container_name: wordpress
-  #   restart: unless-stopped # restart unless it is stopped manually
-  #   env_file: .env
-  #   environment:
-  #     - WORDPRESS_DB_HOST=mariadb:3306
-  #     - WORDPRESS_DB_USER=${MYSQL_USER}
-  #     - WORDPRESS_DB_PASSWORD=${MYSQL_PASSWORD}
-  #     - WORDPRESS_DB_NAME=wordpress
-  #   volumes:
-  #     - wordpress:/var/www/html
-  #   networks:
-  #     - 42-network
-      
+  wordpress:
+    # depends_on: # ensures that our containers will start in order of dependency
+    #   - mariadb
+    build: ./requirements/wordpress # where to find the Dockerfile
+    image: wordpress
+    container_name: wordpress
+    restart: unless-stopped # restart unless it is stopped manually
+    environment:
+      - WORDPRESS_DB_HOST=mariadb:3306
+      - WORDPRESS_DB_USER=${MYSQL_USER}
+      - WORDPRESS_DB_PASSWORD=${MYSQL_PASSWORD}
+      - WORDPRESS_DB_NAME=wordpress
+    volumes:
+      - wordpress:/var/www/html
+    networks:
+      - 42-network
+
   nginx:
     # depends_on:
     #   - wordpress
@@ -56,8 +55,8 @@ services:
       - 42-network
 
 # # When Docker creates volumes, the contents of the volume are stored in a directory on the host filesystem, /var/lib/docker/volumes/, that’s managed by Docker. The contents of each volume then get mounted from this directory to any container that uses the volume. In this way, it’s possible to share code and data between containers.
-# volumes:
-#   wordpress:
+volumes:
+  wordpress:
 #   dbdata:
 
 networks:

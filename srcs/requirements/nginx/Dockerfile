@@ -14,17 +14,6 @@ RUN			openssl req -new -nodes -x509 \
 			-out /etc/ssl/certs/nginx-selfsigned.crt \
 			-subj "/C=BR/ST=Sao Paulo/L=Sao Paulo/O=42 School/OU=phemsi-a/CN=phemsi-a.42.fr"
 
-RUN			apt-get -y install \
-			php \
-			php-cgi \
-			php-mysql \
-			# Nginx requires to handle PHP processing
-			php-fpm \ 
-			php-pdo \
-			php-gd php-cli \
-			php-mbstring
-# COPY		/conf/nginx.conf /etc/nginx/conf.d/
-
 COPY		./conf/ /srcs/
 
 RUN			mkdir /var/www/phemsi-a && \

@@ -1,15 +1,65 @@
-version: '2.2'
+version: '3'
 
 services:
 
-  nginx:
+  # mariadb:
+  #   build: ./requirements/mariadb # where to find the Dockerfile
+  #   image: mariadb
+  #   container_name: mariadb
+  #   restart: unless-stopped # restart unless it is stopped manually
+  #   ports:
+  #     - "3306:3306"
+  #   env_file: .env
+  #   environment:
+  #     - MYSQL_DATABASE=wordpress # non-sensitive information
+  #     - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
+  #     - MYSQL_USER=${MYSQL_USER}
+  #     - MYSQL_PASSWORD=${MYSQL_PASSWORD}
+  #   volumes: 
+  #     - dbdata:/var/lib/mysql
+  #   command: '--default-authentication-plugin=mysql_native_password'
+  #   networks:
+  #     - 42-network
 
-    build: ./requirements/nginx #where to find the Dockerfile
+  # wordpress:
+  #   depends_on: # ensures that our containers will start in order of dependency
+  #     - mariadb
+  #   build: ./requirements/wordpress # where to find the Dockerfile
+  #   image: wordpress
+  #   container_name: wordpress
+  #   restart: unless-stopped # restart unless it is stopped manually
+  #   env_file: .env
+  #   environment:
+  #     - WORDPRESS_DB_HOST=mariadb:3306
+  #     - WORDPRESS_DB_USER=${MYSQL_USER}
+  #     - WORDPRESS_DB_PASSWORD=${MYSQL_PASSWORD}
+  #     - WORDPRESS_DB_NAME=wordpress
+  #   volumes:
+  #     - wordpress:/var/www/html
+  #   networks:
+  #     - 42-network
+      
+  nginx:
+    # depends_on:
+    #   - wordpress
+    build: ./requirements/nginx # where to find the Dockerfile
     image: nginx
     container_name: nginx
-    restart: unless-stopped
+    restart: unless-stopped # restart unless it is stopped manually
     ports:
       - "443:443"
       - "80:80"
+    # volumes:
+    #   - wordpress:/var/www/html
+    #   - ./nginx-conf:/etc/nginx/conf.d
+    networks:
+      - 42-network
 
+# # When Docker creates volumes, the contents of the volume are stored in a directory on the host filesystem, /var/lib/docker/volumes/, that’s managed by Docker. The contents of each volume then get mounted from this directory to any container that uses the volume. In this way, it’s possible to share code and data between containers.
+# volumes:
+#   wordpress:
+#   dbdata:
 
+networks:
+  42-network:
+    driver: bridge # enables communication between our containers since they are on the same Docker daemon host. This streamlines traffic and communication within the application, as it opens all ports between containers on the same bridge network without exposing any ports to the outside world.

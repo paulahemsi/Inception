@@ -54,8 +54,7 @@ A Docker container image is a lightweight, standalone, executable package of sof
 Container images become containers at runtime and in the case of Docker containers – images become containers when they run on Docker Engine. Available for both Linux and Windows-based applications, containerized software will always run the same, regardless of the infrastructure. Containers isolate software from its environment and ensure that it works uniformly despite differences for instance between development and staging.
 
 
-## containers_vs_virtual_machines
-
+## containers_vs_virtual_machinesservice --status-all
 ![image](https://user-images.githubusercontent.com/63563271/165406602-7fdf7260-5f29-448f-82a1-82bb8030817c.png)
 from [docker](https://www.docker.com/resources/what-container/)
 
@@ -269,6 +268,10 @@ more in [The Ultimate Docker Cheat Sheet](https://dockerlabs.collabnix.com/docke
 NGINX is a web server designed for use cases involving high volumes of traffic. It’s a popular, lightweight, high-performance solution.
 
 One of its many impressive features is that it can serve static content (media files, HTML) efficiently. NGINX utilizes an asynchronous event-driven model, delivering reliable performance under significant loads.
+
+> *tip!* `service --status-all` lists the state of services controlled by System V (**nginx** included)
+
+> *tip!* `nginx -t` shows configuration problems 
 
 ### configuration
 

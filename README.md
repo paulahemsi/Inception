@@ -369,6 +369,51 @@ Your database and WordPress application containers will need access to certain e
 
 Rather than setting all of these values in our Docker Compose file — the main file that contains information about how our containers will run — we can set the sensitive values in an .env file and restrict its circulation. This will prevent these values from copying over to our project repositories and being exposed publicly.
 
+## mysql
+
+| Browsing|
+|-----------------|
+| SHOW DATABASES;|
+|SHOW TABLES FROM database;|
+|DESCRIBE table;|
+|             |
+
+|Select|
+|------|
+| SELECT * FROM table;|
+| SELECT * FROM table1, table2;|
+| SELECT field1, field2 FROM table1, table2;|
+| SELECT ... FROM ... WHERE condition|
+| SELECT ... FROM ... WHERE condition GROUP BY field;|
+| SELECT ... FROM ... WHERE condition GROUP BY field HAVING condition2;|
+| SELECT ... FROM ... WHERE condition ORDER BY field1, field2;|
+| SELECT ... FROM ... WHERE condition ORDER BY field1, field2 DESC;|
+| SELECT ... FROM ... WHERE condition LIMIT 10;|
+| SELECT DISTINCT field1 FROM ...|
+| SELECT DISTINCT field1, field2 FROM ...|
+|                                      |
+
+|Create / Open / Delete Database|
+|------------------------------|
+|CREATE DATABASE DatabaseName;|
+|CREATE DATABASE DatabaseName CHARACTER SET utf8;|
+|USE DatabaseName;|
+|DROP DATABASE DatabaseName;|
+|ALTER DATABASE DatabaseName CHARACTER SET utf8;|
+|                                            |
+
+|Users and Privileges|
+|---------------------|
+|CREATE USER 'user'@'localhost';|
+|GRANT ALL PRIVILEGES ON base.* TO 'user'@'localhost' IDENTIFIED BY 'password';|
+|GRANT SELECT, INSERT, DELETE ON base.* TO 'user'@'localhost' IDENTIFIED BY 'password';|
+|REVOKE ALL PRIVILEGES ON base.* FROM 'user'@'host'; -- one permission only|
+|REVOKE ALL PRIVILEGES, GRANT OPTION FROM 'user'@'host'; -- all permissions|
+|FLUSH PRIVILEGES;|
+|                |
+
+More at [MySQL cheatsheet](https://devhints.io/mysql)
+
 ## study_resources
 
 * [Docker And Containers Explained](https://www.youtube.com/watch?v=A0g7I4A6GN4)

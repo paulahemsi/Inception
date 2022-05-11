@@ -2,24 +2,24 @@ version: '3'
 
 services:
 
-  # mariadb:
-  #   build: ./requirements/mariadb # where to find the Dockerfile
-  #   image: mariadb
-  #   container_name: mariadb
-  #   restart: unless-stopped # restart unless it is stopped manually
-  #   ports:
-  #     - "3306:3306"
-  #   env_file: .env
-  #   environment:
-  #     - MYSQL_DATABASE=wordpress # non-sensitive information
-  #     - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
-  #     - MYSQL_USER=${MYSQL_USER}
-  #     - MYSQL_PASSWORD=${MYSQL_PASSWORD}
-  #   volumes: 
-  #     - dbdata:/var/lib/mysql
-  #   command: '--default-authentication-plugin=mysql_native_password'
-  #   networks:
-  #     - 42-network
+  mariadb:
+    build: ./requirements/mariadb # where to find the Dockerfile
+    image: mariadb
+    container_name: mariadb
+    restart: unless-stopped # restart unless it is stopped manually
+    # ports:
+    #   - "3306:3306"
+    env_file: .env
+    environment:
+      - MYSQL_DATABASE=wordpress # non-sensitive information
+      - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
+      - MYSQL_USER=${MYSQL_USER}
+      - MYSQL_PASSWORD=${MYSQL_PASSWORD}
+    # volumes: 
+    #   - dbdata:/var/lib/mysql
+    command: '--default-authentication-plugin=mysql_native_password'
+    networks:
+      - 42-network
 
   wordpress:
     # depends_on: # ensures that our containers will start in order of dependency

@@ -1,15 +1,19 @@
 #!/bin/sh
 
-if [ $(ls /var/lib/mysql | wc -l)  -eq 0 ]
+DATABASE_PATH=/var/lib/mysql/$MYSQL_DATABASE
+
+if [ ! -d "$DATABASE_PATH" ]
 then
-    /etc/init.d/mariadb setup;
-    rc-service mariadb start
-    mysql -u root -e "create user '$MYSQL_USER'@'%' identified by '$MYSQL_PASSWORD';\
-    create database $MYSQL_DATABASE;\
-    grant all privileges on *.* to '$MYSQL_USER'@'%';\
-    flush privileges";
-    mysql -u root $MYSQL_DATABASE < /wp-db.sql;
-    mysql -u root -e "alter user 'root'@'localhost' identified by '$MYSQL_ROOT_PASSWORD'";
+	mkdir -p /var/run/mysqld;
+	chown -R mysql:mysql /var/run/mysqld;
+	chmod 777 /var/run/mysqld;
+
+	service mysql start;
+	mysql -u root --execute="CREATE DATABASE $MYSQL_DATABASE; \
+				 CREATE USER '$MYSQL_USER'@'localhost' IDENTIFIED BY '$MYSQL_PASSWORD'; \
+				 ALTER USER 'root'@'localhost' IDENTIFIED BY '$MYSQL_ROOT_PASSWORD'; \
+				 GRANT ALL PRIVILAGES ON $MYSQL_DATABASE.* TO '$MYSQL_USER'@'localhost';";	
+	service mysql stop;
 fi
 
-exec /usr/bin/mysqld_safe --datadir='/var/lib/mysql'
+exec "$@"

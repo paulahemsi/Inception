@@ -414,6 +414,13 @@ Rather than setting all of these values in our Docker Compose file — the main 
 
 More at [MySQL cheatsheet](https://devhints.io/mysql)
 
+## Socket
+
+A socket is a communication endpoint to which an application can write data (to be sent to the underlying network) and from which an application can read data. The process/application can be related or unrelated and may be executing on the same or different machines
+
+![image](https://user-images.githubusercontent.com/63563271/168162259-d215ce73-896d-4b55-97d2-53adf018e369.png)
+
+
 ## study_resources
 
 * [Docker And Containers Explained](https://www.youtube.com/watch?v=A0g7I4A6GN4)
@@ -421,3 +428,4 @@ More at [MySQL cheatsheet](https://devhints.io/mysql)
 * [difference between nginx daemon on off option](https://stackoverflow.com/questions/25970711/what-is-the-difference-between-nginx-daemon-on-off-option#:~:text=For%20Docker%20containers%20(or%20for%20debugging)%2C%20the%20daemon%20off%3B%20directive%20tells%20Nginx%20to%20stay%20in%20the%20foreground.%20For%20containers%20this%20is%20useful%20as%20best%20practice%20is%20for%20one%20container%20%3D%20one%20process.%20One%20server%20(container)%20has%20only%20one%20service.)
 * [difference between cmd and entrypoint in a dockerfile](https://stackoverflow.com/questions/21553353/what-is-the-difference-between-cmd-and-entrypoint-in-a-dockerfile)
 * [digital ocean- how to install wordpress with docker compose](https://www.digitalocean.com/community/tutorials/how-to-install-wordpress-with-docker-compose)
+* [Lec34 Socket Programming Part-I](https://www.youtube.com/watch?v=tk_RpIVbOMQ&list=PL7B2bn3G_wfC-mRpG7cxJMnGWdPAQTViW&index=34)

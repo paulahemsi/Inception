@@ -20,9 +20,9 @@ RUN			mkdir /var/www/phemsi-a && \
 			mv /srcs/nginx.conf /etc/nginx/sites-available/ && \
 			ln -s /etc/nginx/sites-available/nginx.conf etc/nginx/sites-enabled/ && \
 			mv /srcs/self-signed.conf /etc/nginx/snippets/ && \
-			mv /srcs/ssl-params.conf /etc/nginx/snippets/ && \
-			mv /srcs/index.html /var/www/phemsi-a/ && \
-			mv /srcs/index.php /var/www/phemsi-a/
+			mv /srcs/ssl-params.conf /etc/nginx/snippets/ 
+			# mv /srcs/index.html /var/www/phemsi-a/ && \
+			# mv /srcs/index.php /var/www/phemsi-a/
 
 EXPOSE		443
 

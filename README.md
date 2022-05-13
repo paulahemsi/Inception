@@ -256,6 +256,7 @@ from [devhints](https://devhints.io/docker-compose) in [jonlabelle](https://gist
 |`docker-compose ps` | Lists containers |
 |`docker-compose up` | Builds, (re)creates, starts, and attaches to containers for a service |
 |`docker-compose down` | Stops containers and removes containers, networks, volumes, and images created by up |
+|`docker-compose config` | shows compose configurations, including env variables|
 
 
 

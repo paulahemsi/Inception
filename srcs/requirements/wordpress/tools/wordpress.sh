@@ -1,13 +1,12 @@
 #!/bin/sh
 
-if [ -f ./wordpress/wp-config.php]
-then
-	echo "wordpress already intalled"
+WP_CONFIG=/var/www/phemsi-a/wordpress/wp-config.php
 
-else
+if [ ! -f "$WP_CONFIG" ]
+then
 	wget https://wordpress.org/latest.tar.gz
 	tar -xzvf latest.tar.gz
-	rm -rm latest.tar.gz
+	rm latest.tar.gz
 	
 	rm -rf /etc/php/7.3/fpm/pool.d/www.conf
 	mv ./www.conf /etc/php/7.3/fpm/pool.d/

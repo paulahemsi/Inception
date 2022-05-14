@@ -5,6 +5,7 @@ RUN			apt-get update && apt-get -y install \
 			apt-utils \
 			nano \
 			nginx \
+			php-fpm \ 
 			procps
 RUN			openssl req -new -nodes -x509 \
 			-newkey rsa:4096 \

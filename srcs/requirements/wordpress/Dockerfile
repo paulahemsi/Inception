@@ -3,6 +3,7 @@ FROM debian:buster
 RUN apt-get update && apt-get -y install \
 wget \
 apt-utils \
+procps \
 php \
 php-cgi \
 php-mysql \

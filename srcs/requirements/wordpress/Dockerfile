@@ -15,6 +15,11 @@ php-mbstring
 
 RUN mkdir /var/www && mkdir /var/www/phemsi-a
 
+# php config
+COPY ./conf/wp-config.php /
+# COPY conf/php-fpm.conf /etc/php7/php-fpm.conf
+# COPY conf/www.conf /etc/php7/php-fpm.d/www.conf
+
 COPY ./conf/www.conf /var/www/phemsi-a/
 RUN mkdir /run/php
 
@@ -26,4 +31,5 @@ ENTRYPOINT ["wordpress.sh"]
 
 EXPOSE 9000
 
-CMD ["/usr/sbin/php-fpm7.3", "-F"]
+#Force to stay in foreground and ignore daemonize option from configuration file
+CMD ["/usr/sbin/php-fpm7.3", "--nodaemonize"]

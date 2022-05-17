@@ -7,10 +7,7 @@ then
 	wget https://wordpress.org/latest.tar.gz
 	tar -xzvf latest.tar.gz
 	rm latest.tar.gz
-	
-	rm -rf /etc/php/7.3/fpm/pool.d/www.conf
-	mv ./www.conf /etc/php/7.3/fpm/pool.d/
-	
+
 	cd /var/www/phemsi-a/wordpress
 	sed -i "s/username_here/$MYSQL_USER/g" wp-config-sample.php
 	sed -i "s/password_here/$MYSQL_PASSWORD/g" wp-config-sample.php

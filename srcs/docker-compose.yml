@@ -41,6 +41,8 @@ services:
       - 42-network
 
   nginx:
+    depends_on: # ensures that our containers will start in order of dependency
+      - wordpress
     build: ./requirements/nginx # where to find the Dockerfile
     image: nginx
     container_name: nginx

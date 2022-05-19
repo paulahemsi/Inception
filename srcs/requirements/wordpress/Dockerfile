@@ -1,30 +1,31 @@
 FROM debian:buster
 
 RUN apt-get update && apt-get -y install \
-wget \
-apt-utils \
-nano \
-procps \
-php \
-php-cgi \
-php-mysql \
-# Nginx requires to handle PHP processing
-php-fpm \ 
-php-pdo \
-php-gd php-cli \
-php-mbstring
+	wget \
+	apt-utils \
+	nano \
+	procps \
+	php7.3 \
+	# Nginx requires to handle PHP processing
+	php7.3-fpm \
+	php7.3-opcache \
+	php7.3-cli \
+	php7.3-gd \
+	php7.3-curl \
+	php7.3-mysql \
+	php7.3-mbstring
 
-RUN mkdir /var/www && mkdir /var/www/phemsi-a
+RUN mkdir /run/php && \
+	mkdir -p /var/www/phemsi-a && \
+	wget https://wordpress.org/latest.tar.gz && \
+	tar -xzvf latest.tar.gz && \
+	rm latest.tar.gz && \
+	mv wordpress /var/www/phemsi-a/wordpress
 
-# php config
-# COPY ./conf/wp-config.php /
-# COPY conf/php-fpm.conf /etc/php7/php-fpm.conf
-# COPY conf/www.conf /etc/php7/php-fpm.d/www.conf
+COPY conf/ /srcs/
+COPY tools/ /usr/local/bin/
 
-COPY	./conf/www.conf /etc/php/7.3/fpm/pool.d/
-RUN mkdir /run/php
-
-COPY ./tools/wordpress.sh /usr/local/bin/
+RUN cp /srcs/www.conf /etc/php/7.3/fpm/pool.d/
 
 WORKDIR /var/www/phemsi-a/
 

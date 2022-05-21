@@ -1,28 +1,37 @@
 FROM debian:buster
 
 RUN apt-get update && apt-get -y install \
-wget \
-apt-utils \
-php \
-php-cgi \
-php-mysql \
-# Nginx requires to handle PHP processing
-php-fpm \ 
-php-pdo \
-php-gd php-cli \
-php-mbstring
+	wget \
+	apt-utils \
+	nano \
+	procps \
+	php7.3 \
+	# Nginx requires to handle PHP processing
+	php7.3-fpm \
+	php7.3-opcache \
+	php7.3-cli \
+	php7.3-gd \
+	php7.3-curl \
+	php7.3-mysql \
+	php7.3-mbstring
 
-RUN mkdir /var/www && mkdir /var/www/phemsi-a
+RUN mkdir /run/php && \
+	mkdir -p /var/www/phemsi-a && \
+	wget https://wordpress.org/latest.tar.gz && \
+	tar -xzvf latest.tar.gz && \
+	rm latest.tar.gz && \
+	mv wordpress /var/www/phemsi-a/wordpress
 
-COPY ./conf/www.conf /var/www/phemsi-a/
-RUN mkdir /run/php
+COPY conf/ /srcs/
+COPY tools/ /usr/local/bin/
 
-COPY ./tools/wordpress.sh /usr/local/bin/
+RUN cp /srcs/www.conf /etc/php/7.3/fpm/pool.d/
 
-WORKDIR /var/www/phemsi-a/
+WORKDIR /var/www/phemsi-a/wordpress
 
 ENTRYPOINT ["wordpress.sh"]
 
 EXPOSE 9000
 
-CMD ["/usr/sbin/php-fpm7.3", "-F"]
+#Force to stay in foreground and ignore daemonize option from configuration file
+CMD ["/usr/sbin/php-fpm7.3", "--nodaemonize"]

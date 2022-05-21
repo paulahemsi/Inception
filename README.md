@@ -58,7 +58,7 @@ Container images become containers at runtime and in the case of Docker containe
 ![image](https://user-images.githubusercontent.com/63563271/165406602-7fdf7260-5f29-448f-82a1-82bb8030817c.png)
 from [docker](https://www.docker.com/resources/what-container/)
 
-
+> `ps -aux` list all the processes running, inside a container the main process should be at PID 1 
 
 ## dockerfile
  

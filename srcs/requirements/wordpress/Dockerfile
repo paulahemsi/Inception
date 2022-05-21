@@ -27,7 +27,7 @@ COPY tools/ /usr/local/bin/
 
 RUN cp /srcs/www.conf /etc/php/7.3/fpm/pool.d/
 
-WORKDIR /var/www/phemsi-a/
+WORKDIR /var/www/phemsi-a/wordpress
 
 ENTRYPOINT ["wordpress.sh"]
 

@@ -26,8 +26,7 @@ RUN mkdir /var/www/phemsi-a && \
 	sed -i "s/DOMAIN_NAME/$DOMAIN_NAME/g" /etc/nginx/sites-available/phemsi-a && \
 	ln -s /etc/nginx/sites-available/phemsi-a etc/nginx/sites-enabled/ && \
 	mv /srcs/self-signed.conf /etc/nginx/snippets/ && \
-	mv /srcs/ssl-params.conf /etc/nginx/snippets/ && \
-	mv /srcs/index.php /var/www/phemsi-a/
+	mv /srcs/ssl-params.conf /etc/nginx/snippets/ 
 
 EXPOSE 443
 

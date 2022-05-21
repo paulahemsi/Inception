@@ -14,6 +14,6 @@ COPY		./tools/mariadb.sh /usr/local/bin/
 
 EXPOSE		3306
 
-ENTRYPOINT	["mariadb.sh"]
+ENTRYPOINT ["mariadb.sh"]
 
 CMD			["mysqld", "--bind-address=0.0.0.0"]

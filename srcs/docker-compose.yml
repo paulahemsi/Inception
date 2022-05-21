@@ -7,8 +7,6 @@ services:
     image: mariadb
     container_name: mariadb
     restart: unless-stopped # restart unless it is stopped manually
-    # ports:
-    #   - "3306:3306"
     env_file: .env
     environment:
       - MYSQL_DATABASE=wordpress # non-sensitive information
@@ -27,14 +25,12 @@ services:
     image: wordpress
     container_name: wordpress
     restart: unless-stopped # restart unless it is stopped manually
-    ports:
-      - "9000:9000"
     env_file: .env
     environment:
-      - WORDPRESS_DB_HOST=mariadb:3306
-      - WORDPRESS_DB_USER=${MYSQL_USER}
-      - WORDPRESS_DB_PASSWORD=${MYSQL_PASSWORD}
+      - MYSQL_HOST=mariadb:3306
       - MYSQL_DATABASE=wordpress
+      - MYSQL_USER=${MYSQL_USER}
+      - MYSQL_PASSWORD=${MYSQL_PASSWORD}
     volumes:
       - wordpress:/var/www/phemsi-a/wordpress
     networks:
@@ -49,10 +45,8 @@ services:
     restart: unless-stopped # restart unless it is stopped manually
     ports:
       - "443:443"
-      - "80:80"
     volumes:
       - wordpress:/var/www/phemsi-a/wordpress
-      # - ./nginx-conf:/etc/nginx/conf.d
     networks:
       - 42-network
 

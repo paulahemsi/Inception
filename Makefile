@@ -17,9 +17,8 @@ WORDPRESS_DIR = ./srcs/requirements/wordpress/
 DOMAIN	=	$(shell awk '/phemsi-a.42.fr/{print $$2}' /etc/hosts)
 
 all:
-	# service mysql stop
-	# service nginx stop
 ifneq (${DOMAIN},phemsi-a.42.fr)
+	cp /etc/hosts ./hosts_backup
 	sudo rm /etc/hosts
 	sudo cp ./srcs/requirements/tools/hosts /etc/
 endif
@@ -30,3 +29,5 @@ down:
 
 fclean:
 	docker system prune -a --volumes
+	sudo rm /etc/hosts
+	sudo mv ./hosts_backup /etc/hosts

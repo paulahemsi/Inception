@@ -413,6 +413,18 @@ Rather than setting all of these values in our Docker Compose file — the main 
 |`FLUSH PRIVILEGES;`|
 |                |
 
+## How to export a database 
+
+`mysqldump -u user -p database_name > file.sql`
+
+## How to copy files to/from a container
+
+**from the local file sistem to a container**
+`docker cp <src-path> <container>:<dest-path>`
+
+**from the container to the local file system**
+`docker cp <container>:<src-path> <local-dest-path>`
+
 More at [MySQL cheatsheet](https://devhints.io/mysql)
 
 ## Socket

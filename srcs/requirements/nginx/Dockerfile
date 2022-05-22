@@ -2,7 +2,7 @@ FROM debian:buster
 
 WORKDIR /
 
-RUN apt update; \
+RUN apt-get update; \
 	apt-get install -y \
 	apt-utils \
 	nginx \

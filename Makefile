@@ -39,7 +39,7 @@ clean:
 	docker volume rm dbdata
 	sudo rm -rf /home/phemsi-a/data
 
-fclean: clean
+fclean:
 	docker system prune -a --volumes
 	sudo rm /etc/hosts
 	sudo mv ./hosts_backup /etc/hosts

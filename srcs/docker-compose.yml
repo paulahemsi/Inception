@@ -52,7 +52,7 @@ services:
         environment:
             - DOMAIN_NAME=${DOMAIN_NAME}
             - CERTS_=${CERTS_}
-            - CERTS_KEY_=${CERTS_KEY_}
+            - CERT_KEY_=${CERT_KEY_}
         volumes:
             - wordpress:/var/www/phemsi-a/wordpress
         networks:

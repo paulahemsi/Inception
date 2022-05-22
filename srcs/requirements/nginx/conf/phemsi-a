@@ -2,14 +2,15 @@ server {
 	listen 443 ssl;
 	listen [::]:443 ssl;
 
-	server_name DOMAIN_NAME www.DOMAIN_NAME;
+	server_name DOMAIN_NAME www.DOMAIN_NAME ;
 	# Our root directive names the root directory for requests to our server.
 	root /var/www/phemsi-a/wordpress;
 	# The index directive defines the files that will be used as indexes when processing requests to your server.
 	index index.php index.html index.htm;
 	
-	# SSL Settings imports
-	include snippets/self-signed.conf;
+	# SSL Settings and imports
+	ssl_certificate CERTS_ ;
+	ssl_certificate_key CERT_KEY_ ;
 	include snippets/ssl-params.conf;
 
  	# In this location block, we’ll use a try_files directive to check for files that match individual URI requests. Instead of returning a 404 Not Found status as a default

@@ -18,11 +18,16 @@ DOMAIN	=	$(shell awk '/phemsi-a.42.fr/{print $$2}' /etc/hosts)
 all: volume hosts
 	cd srcs/ && docker-compose -f docker-compose.yml up --build -d
 
-volume:
+# | dir and not file (if exists and not timestamp)
+volume: | $(MARIADB_VOLUME_DIR) $(WORDPRESS_VOLUME_DIR)
+
+$(MARIADB_VOLUME_DIR):
 	sudo mkdir -p $(MARIADB_VOLUME_DIR)
+	docker volume create --name dbdata --opt type=none --opt device=$(MARIADB_VOLUME_DIR) --opt o=bind
+
+$(WORDPRESS_VOLUME_DIR):
 	sudo mkdir -p $(WORDPRESS_VOLUME_DIR)
 	docker volume create --name wordpress --opt type=none --opt device=$(WORDPRESS_VOLUME_DIR) --opt o=bind
-	docker volume create --name dbdata --opt type=none --opt device=$(MARIADB_VOLUME_DIR) --opt o=bind
 
 hosts:
 ifneq (${DOMAIN},phemsi-a.42.fr)
@@ -34,12 +39,10 @@ endif
 down:
 	cd srcs/ && docker-compose -f docker-compose.yml down
 
-clean:
+fclean:
 	docker volume rm wordpress
 	docker volume rm dbdata
 	sudo rm -rf /home/phemsi-a/data
-
-fclean:
 	docker system prune -a --volumes
 	sudo rm /etc/hosts
 	sudo mv ./hosts_backup /etc/hosts

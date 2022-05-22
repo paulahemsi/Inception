@@ -13,6 +13,7 @@ services:
             - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
             - MYSQL_USER=${MYSQL_USER}
             - MYSQL_PASSWORD=${MYSQL_PASSWORD}
+        #volume created and the path inside the container to bind it
         volumes:
             - dbdata:/var/lib/mysql
         networks:
@@ -33,7 +34,6 @@ services:
             - MYSQL_USER=${MYSQL_USER}
             - MYSQL_PASSWORD=${MYSQL_PASSWORD}
         volumes:
-            #- /home/phemsi-a/data/wordpress:/var/www/phemsi-a/wordpress
             - wordpress:/var/www/phemsi-a/wordpress
         networks:
             - 42-network
@@ -51,6 +51,8 @@ services:
             - .env
         environment:
             - DOMAIN_NAME=${DOMAIN_NAME}
+            - CERTS_=${CERTS_}
+            - CERTS_KEY_=${CERTS_KEY_}
         volumes:
             - wordpress:/var/www/phemsi-a/wordpress
         networks:
@@ -62,7 +64,10 @@ services:
 # In this way, it’s possible to share code and data between containers.
 volumes:
     wordpress:
+        # using external volume created in custom directory
+        external: true
     dbdata:
+        external: true
 
 # enables communication between our containers since they are on the same Docker daemon host. 
 # This streamlines traffic and communication within the application, as it opens all ports between

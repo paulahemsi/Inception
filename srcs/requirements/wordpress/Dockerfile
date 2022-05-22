@@ -33,5 +33,5 @@ ENTRYPOINT ["wordpress.sh"]
 
 EXPOSE 9000
 
-#Force to stay in foreground and ignore daemonize option from configuration file
+# Force to stay in foreground and ignore daemonize option from configuration file
 CMD ["/usr/sbin/php-fpm7.3", "--nodaemonize"]

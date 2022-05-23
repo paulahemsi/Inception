@@ -14,6 +14,7 @@ VOLUME_DIR = /home/phemsi-a/data/
 WORDPRESS_VOLUME_DIR = $(VOLUME_DIR)wordpress
 MARIADB_VOLUME_DIR = $(VOLUME_DIR)mysql
 DOMAIN	=	$(shell awk '/phemsi-a.42.fr/{print $$2}' /etc/hosts)
+ALL_VOLUMES = $(shell docker volume ls -q)
 
 all: volume hosts
 	cd srcs/ && docker-compose -f docker-compose.yml up --build -d
@@ -39,10 +40,13 @@ endif
 down:
 	cd srcs/ && docker-compose -f docker-compose.yml down
 
-fclean:
-	docker volume rm wordpress
-	docker volume rm dbdata
+clean:
+ifneq ($(ALL_VOLUMES),)
+	docker volume rm $(ALL_VOLUMES)
+endif
+
+fclean: clean
 	sudo rm -rf /home/phemsi-a/data
-	docker system prune -a --volumes
 	sudo rm /etc/hosts
 	sudo mv ./hosts_backup /etc/hosts
+	docker system prune -a --volumes

@@ -11,6 +11,8 @@
 * [docker_CLI_commands](#docker_CLI_commands)
 * [Defining Environment Variables](#Defining_Environment_Variables)
 * [nginx](#nginx)
+* [mysql](#mysql)
+* [Socket](#Socket)
 * [study_resources](#study_resources)
 
 ## diagram
@@ -442,3 +444,6 @@ A socket is a communication endpoint to which an application can write data (to 
 * [difference between cmd and entrypoint in a dockerfile](https://stackoverflow.com/questions/21553353/what-is-the-difference-between-cmd-and-entrypoint-in-a-dockerfile)
 * [digital ocean- how to install wordpress with docker compose](https://www.digitalocean.com/community/tutorials/how-to-install-wordpress-with-docker-compose)
 * [Lec34 Socket Programming Part-I](https://www.youtube.com/watch?v=tk_RpIVbOMQ&list=PL7B2bn3G_wfC-mRpG7cxJMnGWdPAQTViW&index=34)
+* [How To Import and Export Databases in MySQL or MariaDB](https://www.digitalocean.com/community/tutorials/how-to-import-and-export-databases-in-mysql-or-mariadb)
+* [Volume documentation docker](https://docs.docker.com/storage/volumes/)
+* [How to create docker volume device/host path Stackoverflow thread](https://stackoverflow.com/questions/49950326/how-to-create-docker-volume-device-host-path)

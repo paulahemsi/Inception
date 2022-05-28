@@ -15,6 +15,8 @@
 * [Socket](#Socket)
 * [study_resources](#study_resources)
 
+[wiki](https://github.com/paulahemsi/Inception/wiki)
+
 ## diagram
 
 ![image](https://user-images.githubusercontent.com/63563271/165197599-71613196-1daa-47d5-97bd-5155d581ec72.png)
